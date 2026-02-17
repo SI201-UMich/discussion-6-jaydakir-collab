@@ -56,7 +56,27 @@ class HorseRaces:
             outer keys are (str) horses, outer values are dicts
             inner keys are (str) races, inner values are (int) race times
             EXAMPLE: {'Special Week': {'Tenno Sho Fall': 16.5, 'Tenno Sho Spring': 16.3, 'Teio Sho': 17.0}}
+
         '''
+        race_dict = {}
+        headers = table[0]
+    
+
+        for lines in table[1:]: 
+            
+            track = lines[0]
+           
+            horse_dict = {}
+
+            for i in range(1,3):
+                race_name = headers[i]
+                race_time = float(lines[i])
+                horse_dict[race_name] = race_time
+
+            race_dict[track] = horse_dict
+
+        return race_dict      
+
         pass
 
 ###############################################################################
@@ -75,6 +95,13 @@ class HorseRaces:
             tuple of fastest race name and the time
             EXAMPLE: ('Teio Sho', 14.8)
         '''
+
+        horse_name = self.get(horse)
+
+        if horse_name == None: 
+            return (None, 999.9)
+
+
         pass
 
 ###############################################################################
