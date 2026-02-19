@@ -62,19 +62,20 @@ class HorseRaces:
         headers = table[0]
     
 
-        for lines in table[1:]: 
+        for line in table[1:]: 
             
-            track = lines[0]
+            horse_name = line[0]
            
             horse_dict = {}
 
-            for i in range(1,3):
+            for i in range(1,4):
                 race_name = headers[i]
-                race_time = float(lines[i])
+                race_time = float(line[i])
                 horse_dict[race_name] = race_time
 
-            race_dict[track] = horse_dict
+            race_dict[horse_name] = horse_dict
 
+        
         return race_dict      
 
         pass
@@ -96,13 +97,15 @@ class HorseRaces:
             EXAMPLE: ('Teio Sho', 14.8)
         '''
 
-        horse_name = self.get(horse)
 
-        if horse_name == None: 
+        if horse not in self.race_dict: 
             return (None, 999.9)
+       
+        else: 
+            specfic_horse_dict = self.race_dict[horse]
+            sorted_specfic_horse_dict = sorted(specfic_horse_dict.items(), key=lambda item:item[1])
+            return sorted_specfic_horse_dict[0]
 
-
-        pass
 
 ###############################################################################
 ##### TASK 3
@@ -116,6 +119,9 @@ class HorseRaces:
             A dictionary of tuples of each horse, with their fastest race and time.
             EXAMPLE: {"Oguri Cap": ("Tenno Sho Fall", 16.6), "Mejiro McQueen": ("Tenno Sho Fall", 16.1)}
         '''
+
+        for horse in self.race_dict:
+    print(horse)  # prints each horse name
         pass
 
 ###############################################################################
